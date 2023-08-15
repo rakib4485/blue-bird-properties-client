@@ -6,7 +6,6 @@ import AboutUs from "../pages/AboutUs/AboutUs";
 import Blog from "../pages/Blog/Blog";
 import ContactUs from "../pages/ContactUs/ContactUs";
 import Login from "../pages/Login/Login";
-import SignIn from "../pages/SignIn/SignIn";
 
 export const router = createBrowserRouter([
     {
@@ -36,10 +35,6 @@ export const router = createBrowserRouter([
             {
                 path: '/login',
                 element: <Login/>
-            },
-            {
-                path: '/signin',
-                element: <SignIn/>
             }
             
         ]
