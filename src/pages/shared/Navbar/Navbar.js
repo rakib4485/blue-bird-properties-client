@@ -5,7 +5,7 @@ import logo from '../../../assets/logos/logo.png'
 const Navbar = () => {
     const menuItems = <React.Fragment>
         <li><Link to="/">Home</Link></li>
-      <li tabIndex={0}>
+      {/* <li tabIndex={0}>
         <details>
           <summary>Parent</summary>
           <ul className="p-2">
@@ -13,9 +13,9 @@ const Navbar = () => {
             <li><Link>Submenu 2</Link></li>
           </ul>
         </details>
-      </li>
-      <li><Link to="/about">About</Link></li>
+      </li> */}
       <li><Link to="/properties">Properties</Link></li>
+      <li><Link to="/about">About</Link></li>
       <li><Link to="/blog">Blog</Link></li>
       <li><Link to="/contact">Contacts</Link></li>
     </React.Fragment>
