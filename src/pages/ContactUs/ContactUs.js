@@ -1,9 +1,12 @@
 import React from 'react';
+import ContactIntro from './ContactIntro/ContactIntro';
+import ContactCards from './ContactCards/ContactCards';
 
 const ContactUs = () => {
     return (
         <div>
-            <h1>this is contact us page</h1>
+            <ContactIntro/>
+            <ContactCards/>
         </div>
     );
 };
