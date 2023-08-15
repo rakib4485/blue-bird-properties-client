@@ -38,7 +38,7 @@ const Navbar = () => {
     </ul>
   </div>
   <div className="navbar-end">
-    <Link className="bg-gradient-to-r from-sky-500 to-indigo-500 text-white text-lg font-semibold px-5 py-3 rounded-md">Log in</Link>
+    <Link to='/login' className="bg-gradient-to-r from-sky-500 to-indigo-500 text-white text-lg font-semibold px-5 py-3 rounded-md">Log in</Link>
   </div>
 </div>
     );
