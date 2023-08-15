@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 const AboutIntro = () => {
     return (
         <div>
-             {/* Page intro started  */}
              <div>
                 <div className="relative">
                     <div className="relative bg-gray-900">
