@@ -1,9 +1,13 @@
 import React from 'react';
+import BlogCards from './BlogCards/BlogCards';
+import BlogIntro from './BlogIntro/BlogIntro';
 
 const Blog = () => {
+    
     return (
         <div>
-            <h1>this is blog page</h1>
+            <BlogIntro/>
+            <BlogCards/>
         </div>
     );
 };
