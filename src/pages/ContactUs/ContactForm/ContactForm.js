@@ -19,14 +19,14 @@ const ContactForm = () => {
             </div>
             <div>
                 <form action="">
-                    <input type="text" placeholder='Your Name' className='py-3 px-16 bg-gray-200' />
-                    <input type="email" placeholder='Email Address' className='py-3 px-16 ml-2 bg-gray-200' />
+                    <input type="text" placeholder='Your Name' className='py-3 px-16 bg-gray-200 outline-none' />
+                    <input type="email" placeholder='Email Address' className='py-3 px-16 ml-2 bg-gray-200 outline-none' />
                     <br />
-                    <input type="text" placeholder='Phone Number' className='py-3 my-3 px-16 bg-gray-200' />
-                    <input type="text" placeholder='Subject' className='py-3 px-16 my-3 ml-2 bg-gray-200' />
-                    <textarea name="" id="" cols="74" rows="10" placeholder='Write Message' className='bg-gray-200'></textarea>
+                    <input type="text" placeholder='Phone Number' className='py-3 my-3 px-16 bg-gray-200 outline-none' />
+                    <input type="text" placeholder='Subject' className='py-3 px-16 my-3 ml-2 bg-gray-200 outline-none' />
+                    <textarea name="" id="" cols="74" rows="10" placeholder='Write Message' className='bg-gray-200 outline-none px-3 mb-2'></textarea>
                     <br />
-                    <input className='bg-blue-700 py-4 px-10 text-white font-semibold rounded-md' type="submit" value="Submit" />
+                    <input className='bg-blue-700 py-4 px-10 text-white font-semibold rounded-md outline-none' type="submit" value="Submit" />
                 </form>
             </div>
            </div> 
