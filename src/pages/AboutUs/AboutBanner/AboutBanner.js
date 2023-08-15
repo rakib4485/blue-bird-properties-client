@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Button from '../../../components/Button/Button';
 
 const AboutBanner = () => {
     return (
@@ -20,7 +21,9 @@ const AboutBanner = () => {
                                 <h1 className="text-6xl font-bold text-white mb-5 lg:mb-10 lg:w-2/3 mx-auto">
                                 Are You Ready To Buy Dream House?
                                 </h1>
-                                <Link className='text-white bg-blue-700 py-5 px-10 mt-9 rounded font-bold'>Search Property</Link>
+                                <Link to=''>
+                                <Button>Search Property</Button>
+                                </Link>
                             </div>
                         </div>
                     </div>
