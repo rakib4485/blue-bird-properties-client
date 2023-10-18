@@ -9,51 +9,18 @@ import 'swiper/css/pagination';
 // import required modules
 import { Autoplay } from 'swiper/modules';
 import PropertyCard from '../../../components/PropertyCard/PropertyCard';
+import { useQuery } from '@tanstack/react-query';
 
 const HotOffers = () => {
-    const offers = [
-        {
-            id: 1,
-            img: 'https://i.ibb.co/9NTyVDS/latest-properties-img-1.jpg',
-            title: "Interior Apartment",
-            location: "80 Broklyn Street, New York. USA",
-            price: 12000,
-            size: 1500
-        },
-        {
-            id: 2,
-            img: 'https://i.ibb.co/0XXQT54/latest-properties-img-2.jpg',
-            title: "Monall Design House",
-            location: "80 Broklyn Street, New York. USA",
-            price: 12000,
-            size: 1500
-        },
-        {
-            id: 3,
-            img: 'https://i.ibb.co/b5j3H6X/latest-properties-img-3.jpg',
-            title: "Luxury Apartment",
-            location: "80 Broklyn Street, New York. USA",
-            price: 12000,
-            size: 1500
-        },
-        {
-            id: 4,
-            img: 'https://i.ibb.co/9NTyVDS/latest-properties-img-1.jpg',
-            title: "Interior Apartment",
-            location: "80 Broklyn Street, New York. USA",
-            price: 12000,
-            size: 1500
-        },
-        {
-            id: 5,
-            img: 'https://i.ibb.co/b5j3H6X/latest-properties-img-3.jpg',
-            title: "Monall Design Apartment",
-            location: "80 Broklyn Street, New York. USA",
-            price: 12000,
-            size: 1500
-        },
-
-    ]
+    const {data: properties = [], refetch, isLoading} = useQuery({
+        queryKey: ['properties'],
+        queryFn: async () =>{
+            const res = await fetch('http://localhost:5000/properties/');
+            const data = await res.json();
+            return data;
+        }
+    })
+    const offers = [...properties].reverse().slice(0,9)
     return (
         <div className='mt-20 mx-[7%]'>
             <h4 className='text-xl font-semibold text-green-600'>Browse Hot Offers</h4>
@@ -86,7 +53,7 @@ const HotOffers = () => {
                 modules={[Autoplay]}
                 className="mySwiper my-20"
             >
-                {offers.map(offer => <SwiperSlide key={offer.id}> <PropertyCard key={offer.id} offer={offer}/></SwiperSlide>)}
+                {offers.map(offer => <SwiperSlide key={offer.id}> <PropertyCard key={offer.id} property={offer}/></SwiperSlide>)}
 
             </Swiper>
         </div>
