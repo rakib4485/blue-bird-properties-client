@@ -1,38 +1,114 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { FaGoogle } from "react-icons/fa";
+import { AuthContext } from '../../contexts/AuthProvider';
 
 const Login = () => {
+
+    const {signIn, googleSignIn} = useContext(AuthContext);
+    const navigate = useNavigate();
+
+    const handleLogin = event =>{
+        event.preventDefault();
+
+        const form = event.target;
+        const email = form.email.value;
+        const password = form.password.value;
+        signIn(email, password)
+        .then(result =>{
+          const user = result.user;
+          console.log(user);
+        })
+        .then(err => {
+          console.log(err)
+        })
+        form.reset();
+    }
+
+    const handleGoogleSignIn = () =>{
+        googleSignIn()
+        .then(result => {
+          const user = result.user;
+          saveUser(user.displayName, user.email);
+        })
+        .then(error => console.error(error))
+    }
+
+    const saveUser = (name, email) => {
+        const user = {name, email};
+        fetch('http://localhost:5000/users', {
+            method: 'POST',
+            headers: {
+              'content-type': 'application/json'
+            },
+            body: JSON.stringify(user)
+          })
+          .then(res => res.json())
+          .then(data => {
+            navigate('/');
+          })
+      }
+
     return (
-        <div>
-            <div className="hero min-h-screen bg-base-200">
-  <div className="hero-content flex-col lg:flex-row-reverse">
-    <div className="text-center lg:text-left">
-      <h1 className="text-5xl font-bold">Login now!</h1>
-      <p className="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
-    </div>
-    <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-      <div className="card-body">
-        <div className="form-control">
-          <label className="label">
-            <span className="label-text">Email</span>
-          </label>
-          <input type="text" placeholder="email" className="input input-bordered" />
-        </div>
-        <div className="form-control">
-          <label className="label">
-            <span className="label-text">Password</span>
-          </label>
-          <input type="text" placeholder="password" className="input input-bordered" />
-          <label className="label">
-            <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
-          </label>
-        </div>
-        <div className="form-control mt-6">
-          <button className="btn btn-primary">Login</button>
-        </div>
+        <div className='min-h-screen' style={{backgroundImage: "url(https://i.ibb.co/vBcjJJ3/header-23.jpg)", backgroundSize: "cover", backgroundPosition: "center", backgroundRepeat: "no-repeat"}}>
+            <div className="py-20">
+        <form onSubmit={handleLogin} className="card-body bg-white md:w-[70%] lg:w-[40%] mx-auto rounded-md">
+          <div className="flex justify-between items-center">
+            <div className="text-center md:w-1/2">
+              <h1 className="text-xl font-bold md:text-3xl uppercase">
+                Log In
+              </h1>
+            </div>
+            <div>
+              <Link>
+                <button className="btn btn-neutral mr-2">Login</button>
+              </Link>
+              <Link to="/signup">
+                <button className="btn btn-dark btn-outline mr-2">
+                  Sign Up
+                </button>
+              </Link>
+            </div>
+          </div>
+          <div className="form-control">
+            <label className="label">
+              <span className="label-text">Email</span>
+            </label>
+            <input
+              type="email"
+              name="email"
+              placeholder="email"
+              className="input input-bordered"
+            />
+          </div>
+          <div className="form-control">
+            <label className="label">
+              <span className="label-text">Password</span>
+            </label>
+            <input
+              type="password"
+              name="password"
+              placeholder="password"
+              className="input input-bordered"
+            />
+            <label className="label">
+              <Link className="label-text-alt link link-hover">
+                Forgot password?
+              </Link>
+            </label>
+          </div>
+
+          <div className="form-control mt-6">
+            <button className="btn btn-primary">Login</button>
+          </div>
+          <div className="divider">OR</div>
+          <div className="form-control mt-6 ">
+            <button onClick={handleGoogleSignIn} className="flex items-center justify-center btn btn-secondary btn-outline">
+              <FaGoogle className="mr-2"></FaGoogle> Login With Google
+            </button>
+          </div>
+        </form>
       </div>
-    </div>
-  </div>
-</div>
         </div>
     );
 };

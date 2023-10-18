@@ -6,6 +6,8 @@ import AboutUs from "../pages/AboutUs/AboutUs";
 import Blog from "../pages/Blog/Blog";
 import ContactUs from "../pages/ContactUs/ContactUs";
 import Login from "../pages/Login/Login";
+import SignIn from "../pages/SignIn/SignIn";
+import PropertyDetails from "../pages/PropertyDetails/PropertyDetails/PropertyDetails";
 import BlogDetails from "../pages/Blog/BlogDetails/BlogDetails";
 
 export const router = createBrowserRouter([
@@ -20,6 +22,13 @@ export const router = createBrowserRouter([
             {
                 path: "/properties",
                 element: <Properties/>
+            },
+            {
+                path: "/propertyDetails/:id",
+                element: <PropertyDetails/>,
+                loader: ({params}) =>{
+                    return fetch(`http://localhost:5000/propertyDetails/${params.id}`)
+                }
             },
             {
                 path: "/about",
@@ -40,6 +49,10 @@ export const router = createBrowserRouter([
             {
                 path: '/login',
                 element: <Login/>
+            },
+            {
+                path: '/signup',
+                element: <SignIn/>
             }
             
         ]
