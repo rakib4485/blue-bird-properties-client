@@ -10,9 +10,10 @@ import 'swiper/css/pagination';
 import { Autoplay } from 'swiper/modules';
 import PropertyCard from '../../../components/PropertyCard/PropertyCard';
 import { useQuery } from '@tanstack/react-query';
+import Loader from '../../../components/Loader/Loader';
 
 const HotOffers = () => {
-    const {data: properties = [], refetch, isLoading} = useQuery({
+    const {data: properties = [], isLoading} = useQuery({
         queryKey: ['properties'],
         queryFn: async () =>{
             const res = await fetch('http://localhost:5000/properties/');
@@ -20,7 +21,11 @@ const HotOffers = () => {
             return data;
         }
     })
-    const offers = [...properties].reverse().slice(0,9)
+    const offers = [...properties].reverse().slice(0,9);
+
+    if(isLoading){
+        return <Loader/>
+    }
     return (
         <div className='mt-20 mx-[7%]'>
             <h4 className='text-xl font-semibold text-green-600'>Browse Hot Offers</h4>

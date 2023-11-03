@@ -11,9 +11,10 @@ import 'swiper/css/navigation';
 // import required modules
 import { Pagination, Navigation } from 'swiper/modules';
 import Button from '../../../components/Button/Button';
+import { Link } from 'react-router-dom';
 
 const PropertyDetailsBanner = ({ propertyDetails }) => {
-    const { gallery, propertyName, location, rent, bedroom, bath, size } = propertyDetails;
+    const { _id, gallery, propertyName, location, rent, bedroom, bath, size, availability } = propertyDetails;
     return (
         <div>
             <Swiper
@@ -31,6 +32,7 @@ const PropertyDetailsBanner = ({ propertyDetails }) => {
             <div className='grid grid-cols-1 md:grid-cols-3 px-[7%] py-16 items-center bg-slate-200'>
                 <div>
                     <h3 className="text-2xl font-semibold">{propertyName}</h3>
+                    <p><strong>Available From : </strong> {availability}</p>
                     <p className="text-md">{location}</p>
                     <h3 className="text-2xl font-semibold text-blue-500">৳ {rent}</h3>
                 </div>
@@ -60,7 +62,9 @@ const PropertyDetailsBanner = ({ propertyDetails }) => {
                 </div>
                 <div className='flex justify-center items-center gap-6'>
                     <Button>Add Favorite</Button>
+                    <Link to={`/propertyDetails/${_id}/booking`}>
                     <Button>Book Now</Button>
+                    </Link>
                 </div>
             </div>
 
