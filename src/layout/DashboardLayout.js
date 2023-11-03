@@ -1,0 +1,37 @@
+import React from 'react';
+import Navbar from '../pages/shared/Navbar/Navbar';
+import { Link, Outlet } from 'react-router-dom';
+
+const DashboardLayout = () => {
+    return (
+        <div>
+            <Navbar></Navbar>
+      <div className="drawer lg:drawer-open">
+        <input id="dashboard-drawer" type="checkbox" className="drawer-toggle" />
+        <div className="drawer-content">
+          <Outlet></Outlet>
+        </div>
+        <div className="drawer-side">
+          <label htmlFor="dashboard-drawer" className="drawer-overlay btn btn-primary drawer-button lg:hidden"></label>
+          <ul className="menu p-4 w-80 text-base-content">
+            <li>
+              <Link to='/dashboard'>My Bookings</Link>
+            </li>
+            {
+               <>
+              <li>
+              <Link to='/dashboard/allusers'>All Users</Link>
+              <Link to='/dashboard/addProperty'>Add A Property</Link>
+              <Link to='/dashboard/managedoctors'>Manage Doctor</Link>
+            </li>
+              </>
+            }
+            
+          </ul>
+        </div>
+      </div>
+        </div>
+    );
+};
+
+export default DashboardLayout;

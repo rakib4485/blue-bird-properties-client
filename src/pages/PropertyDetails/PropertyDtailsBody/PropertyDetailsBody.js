@@ -7,12 +7,12 @@ import RecentlyAdded from './RecentlyAdded/RecentlyAdded';
 import PropertyOwner from './PropertyOwner/PropertyOwner';
 
 const PropertyDetailsBody = ({property}) => {
-    const {_id, description} = property;
+    const { description, video} = property;
     return (
         <div className='md:flex gap-8 mx-[7%] justify-between'>
             <div className='md:w-[60%]'>
                 <PropertyDescription description= {description}/>
-                <PropertyVideo/>
+                <PropertyVideo video={video}/>
                 <PropertyOffers property={property}/>
                 <PropertyPlan/>
                 {/* <PropertyReviews id={_id}/> */}

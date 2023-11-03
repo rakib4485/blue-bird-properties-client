@@ -3,12 +3,17 @@ import Main from "../layout/Main";
 import Home from "../pages/Home/Home/Home";
 import Properties from "../pages/Properties/Properties";
 import AboutUs from "../pages/AboutUs/AboutUs";
-import Blog from "../pages/Blog/Blog";
+// import Blog from "../pages/Blog/Blog";
 import ContactUs from "../pages/ContactUs/ContactUs";
 import Login from "../pages/Login/Login";
 import SignIn from "../pages/SignIn/SignIn";
 import PropertyDetails from "../pages/PropertyDetails/PropertyDetails/PropertyDetails";
 import BlogDetails from "../pages/Blog/BlogDetails/BlogDetails";
+import BookingPage from "../pages/BookingPage/BookingPage";
+import DashboardLayout from "../layout/DashboardLayout";
+import Dashboard from "../pages/Dashboard/Dashboard/Dashboard";
+import PrivateRoutes from "./PrivateRoutes";
+import AddProperty from "../pages/Dashboard/AddProperty/AddProperty";
 
 export const router = createBrowserRouter([
     {
@@ -25,7 +30,14 @@ export const router = createBrowserRouter([
             },
             {
                 path: "/propertyDetails/:id",
-                element: <PropertyDetails/>,
+                element: <PrivateRoutes><PropertyDetails></PropertyDetails></PrivateRoutes>,
+                loader: ({params}) =>{
+                    return fetch(`http://localhost:5000/propertyDetails/${params.id}`)
+                }
+            },
+            {
+                path: "/propertyDetails/:id/booking",
+                element: <BookingPage/>,
                 loader: ({params}) =>{
                     return fetch(`http://localhost:5000/propertyDetails/${params.id}`)
                 }
@@ -34,10 +46,10 @@ export const router = createBrowserRouter([
                 path: "/about",
                 element: <AboutUs/>
             },
-            {
-                path: "/blog",
-                element: <Blog/>
-            },
+            // {
+            //     path: "/blog",
+            //     element: <Blog/>
+            // },
             {
                 path: '/blogDetails',
                 element: <BlogDetails/>
@@ -55,6 +67,20 @@ export const router = createBrowserRouter([
                 element: <SignIn/>
             }
             
+        ]
+    },
+    {
+        path: '/dashboard',
+        element: <PrivateRoutes><DashboardLayout/></PrivateRoutes>,
+        children: [
+            {
+                path: '/dashboard',
+                element: <Dashboard></Dashboard>
+            },
+            {
+                path: "/dashboard/addProperty",
+                element: <AddProperty/>
+            }
         ]
     }
 ])

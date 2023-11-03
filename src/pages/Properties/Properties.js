@@ -4,7 +4,7 @@ import PropertyCard from '../../components/PropertyCard/PropertyCard';
 import Loader from '../../components/Loader/Loader';
 
 const Properties = () => {
-    const { data: properties = [], refetch, isLoading } = useQuery({
+    const { data: properties = [], isLoading } = useQuery({
         queryKey: ['properties'],
         queryFn: async () => {
             const res = await fetch('http://localhost:5000/properties/');
@@ -17,7 +17,7 @@ const Properties = () => {
         return <Loader/>
     }
 
-    console.log(properties);
+    // console.log(properties);
     return (
         <div className='mx-[8%]'>
             <form>
