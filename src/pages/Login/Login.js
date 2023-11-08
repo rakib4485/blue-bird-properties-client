@@ -1,12 +1,23 @@
-import React, { useContext } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useContext, useState } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FaGoogle } from "react-icons/fa";
 import { AuthContext } from '../../contexts/AuthProvider';
+import useToken from '../../hooks/useToken';
 
 const Login = () => {
 
     const {signIn, googleSignIn} = useContext(AuthContext);
+    const [loginUserEmail, setLoginUserEmail] = useState('');
+    const [token] = useToken(loginUserEmail);
     const navigate = useNavigate();
+    const location = useLocation();
+
+    const from = location.state?.from?.pathname || "/";
+    console.log(from);
+
+    if(token){
+      navigate(from, {replace: true});
+    }
 
     const handleLogin = event =>{
         event.preventDefault();
@@ -18,10 +29,10 @@ const Login = () => {
         .then(result =>{
           const user = result.user;
           console.log(user);
+          setLoginUserEmail(email);
         })
         .then(err => {
-          getUserToken(email);
-          navigate('/')
+          console.error(err);
         })
         form.reset();
     }
@@ -46,19 +57,8 @@ const Login = () => {
           })
           .then(res => res.json())
           .then(data => {
-            navigate('/');
+            setLoginUserEmail(email);
           })
-      }
-
-      const getUserToken = email =>{
-        fetch(`http://localhost:5000/jwt?email=${email}`)
-        .then(res => res.json())
-        .then(data =>{
-          if(data.accessToken){
-            localStorage.setItem('accessToken', data.accessToken)
-            navigate('/')
-          }
-        })
       }
 
     return (

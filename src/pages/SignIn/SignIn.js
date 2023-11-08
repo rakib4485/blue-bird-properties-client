@@ -1,11 +1,21 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { FaGoogle } from 'react-icons/fa';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider';
+import useToken from '../../hooks/useToken';
 
 const SignIn = () => {
-    const {createUser, updateUser, googleSignIn} = useContext(AuthContext);
+  const {createUser, updateUser, googleSignIn} = useContext(AuthContext);
+  const [createdUserEmail, setCreatedUserEmail ] = useState('');
+  const [token] = useToken(createdUserEmail);
+  const location = useLocation();
   const navigate = useNavigate();
+
+  const form = location.state?.form?.pathname || "/";
+
+  if(token){
+    navigate(form, {replace: true })
+  }
 
 const handleSignup = event =>{
   event.preventDefault();
@@ -54,20 +64,21 @@ const saveUser = (name, email) => {
     })
     .then(res => res.json())
     .then(data => {
-      getUserToken(email)
+      setCreatedUserEmail(email);
+      // getUserToken(email)
     })
 }
 
-const getUserToken = email =>{
-  fetch(`http://localhost:5000/jwt?email=${email}`)
-  .then(res => res.json())
-  .then(data =>{
-    if(data.accessToken){
-      localStorage.setItem('accessToken', data.accessToken)
-      navigate('/')
-    }
-  })
-}
+// const getUserToken = email =>{
+//   fetch(`http://localhost:5000/jwt?email=${email}`)
+//   .then(res => res.json())
+//   .then(data =>{
+//     if(data.accessToken){
+//       localStorage.setItem('accessToken', data.accessToken)
+//       navigate('/')
+//     }
+//   })
+// }
 
     return (
         <div className='min-h-screen' style={{backgroundImage: "url(https://i.ibb.co/vBcjJJ3/header-23.jpg)", backgroundSize: "cover", backgroundPosition: "center", backgroundRepeat: "no-repeat"}}>
