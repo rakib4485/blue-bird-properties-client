@@ -1,11 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Navbar from '../pages/shared/Navbar/Navbar';
 import { Link, Outlet } from 'react-router-dom';
+import { AuthContext } from '../contexts/AuthProvider';
+import useAdmin from '../hooks/useAdmin';
 
 const DashboardLayout = () => {
-    return (
-        <div>
-            <Navbar></Navbar>
+
+  const { user } = useContext(AuthContext)
+  const [isAdmin] = useAdmin(user?.email);
+
+  return (
+    <div>
+      <Navbar></Navbar>
       <div className="drawer lg:drawer-open">
         <input id="dashboard-drawer" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content">
@@ -18,20 +24,27 @@ const DashboardLayout = () => {
               <Link to='/dashboard'>My Bookings</Link>
             </li>
             {
-               <>
-              <li>
-              <Link to='/dashboard/allusers'>All Users</Link>
-              <Link to='/dashboard/addProperty'>Add A Property</Link>
-              <Link to='/dashboard/managedoctors'>Manage Doctor</Link>
-            </li>
+              <>
+                <li>
+                  <Link to='/dashboard/addProperty'>Add A Property</Link>
+                </li>
               </>
             }
-            
+            {
+              isAdmin && <>
+                <li>
+                  <Link to='/dashboard/allusers'>All Users</Link>
+                  <Link to='/dashboard/managedoctors'>Manage Doctor</Link>
+                </li>
+
+              </>
+            }
+
           </ul>
         </div>
       </div>
-        </div>
-    );
+    </div>
+  );
 };
 
 export default DashboardLayout;
