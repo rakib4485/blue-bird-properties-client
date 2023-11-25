@@ -14,6 +14,10 @@ import DashboardLayout from "../layout/DashboardLayout";
 import Dashboard from "../pages/Dashboard/Dashboard/Dashboard";
 import PrivateRoutes from "./PrivateRoutes";
 import AddProperty from "../pages/Dashboard/AddProperty/AddProperty";
+import MyPropertyBookings from "../pages/Dashboard/MyPropertyBookings/MyPropertyBookings";
+import MyProperty from "../pages/Dashboard/MyProperty/MyProperty";
+import AllBookings from "../pages/Dashboard/AllBookings/AllBookings";
+import AllUsers from "../pages/Dashboard/AllUsers/AllUsers";
 
 export const router = createBrowserRouter([
     {
@@ -78,8 +82,24 @@ export const router = createBrowserRouter([
                 element: <Dashboard></Dashboard>
             },
             {
+                path: "/dashboard/myPropertyBookings",
+                element: <MyPropertyBookings/>
+            },
+            {
+                path: "/dashboard/myProperty",
+                element: <MyProperty/>
+            },
+            {
                 path: "/dashboard/addProperty",
                 element: <AddProperty/>
+            },
+            {
+                path: "/dashboard/allUser",
+                element: <AllUsers/>
+            },
+            {
+                path: "/dashboard/allBookings",
+                element: <AllBookings/>
             }
         ]
     }
