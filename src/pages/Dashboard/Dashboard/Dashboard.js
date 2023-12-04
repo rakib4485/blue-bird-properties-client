@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 const Dashboard = () => {
     const { user } = useContext(AuthContext);
 
-  const url = `http://localhost:5000/bookings?email=${user?.email}`;
+  const url = `http://localhost:5000/myBookings?email=${user?.email}`;
 
   const { data: bookings = [], isLoading } = useQuery({
     queryKey: ["bookings", user?.email],
@@ -38,7 +38,7 @@ const Dashboard = () => {
               <th>Image</th>
               <th>Property Name</th>
               <th>Location</th>
-              <th>Booking Status</th>
+              <th>House Tour Date</th>
             </tr>
           </thead>
           <tbody>
@@ -51,14 +51,7 @@ const Dashboard = () => {
                 <td><Link to={`/propertyDetails/${booking.propertyId}`}>{booking.propertyName}</Link></td>
                 <td>{booking.location}</td>
                 <td>
-                  {booking.payment && booking.payment === 'false' && (
-                    <Link to={`/dashboard/payment/${booking._id}`}>
-                      <button className="btn btn-primary btn-sm">Pay</button>
-                    </Link>
-                  )}
-                  {booking.price && booking.paid && (
-                    <span className="text-primary">Paid</span>
-                  )}
+                  {booking.date}
                 </td>
               </tr>
             ))}

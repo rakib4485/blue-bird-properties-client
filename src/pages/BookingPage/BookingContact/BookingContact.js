@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 const BookingContact = ({property}) => {
 
-    const {_id, rent, image, propertyName, location} = property;
+    const {_id, rent, image, propertyName, location, authorEmail} = property;
     const {user} = useContext(AuthContext);
     const navigate = useNavigate();
 
@@ -18,6 +18,7 @@ const BookingContact = ({property}) => {
         const email = form.email.value;
         const nid = form.nid.value;
         const phone = form.phone.value;
+        const date = form.date.value;
 
         const renterInfo = {
             name : fname+ ' ' + lname,
@@ -33,7 +34,9 @@ const BookingContact = ({property}) => {
             location, 
             renterInfo,
             image,
-            payment: 'false'
+            payment: 'false',
+            authorEmail,
+            date
         }
 
         // Add Booking into database
@@ -45,9 +48,13 @@ const BookingContact = ({property}) => {
             body: JSON.stringify(booking)
         })
         .then(res => res.json())
-        .then(result => {
-            toast.success('Booking successfully');
-            navigate('/dashboard');
+        .then(data => {
+            if(data.acknowledged){
+                toast.success('Booking Confirmed')
+            }
+            else{
+                toast.error(data.message);
+            }
         })
     }
 
@@ -75,6 +82,10 @@ const BookingContact = ({property}) => {
                     <div>
                         <p className="m-1 text-slate-600">Contact Phone</p>
                         <input type="text" name='phone' className="input input-bordered w-full" required/>
+                    </div>
+                    <div>
+                        <p className="m-1 text-slate-600">Tour Date</p>
+                        <input type="date" name='date' className="input input-bordered w-full" required/>
                     </div>
                 </div>
                 <div className='flex items-center justify-around mt-10 bg-slate-200 py-6 rounded-md'>

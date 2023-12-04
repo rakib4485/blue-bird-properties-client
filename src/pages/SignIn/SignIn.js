@@ -24,6 +24,7 @@ const handleSignup = event =>{
   const name = form.name.value;
   const email = form.email.value;
   const password = form.password.value;
+  const role =  'user';
 
   const userInfo = {
     displayName: name
@@ -35,11 +36,11 @@ const handleSignup = event =>{
     console.log(user);
     updateUser(userInfo)
     .then( () =>{
-      saveUser(name, email);
+      saveUser(name, email,role);
     })
     .then(err => console.error(err));
   })
-  .then(err => console.error(err));
+  .catch(err => console.error(err));
   form.reset();
 }
 
@@ -48,13 +49,14 @@ const handleGoogleSignIn = () => {
   .then(result => {
     const user = result.user;
     console.log(user);
-    saveUser(user.displayName, user.email);
+    const role='user';
+    saveUser(user.displayName, user.email, role);
   })
-  .then(error => console.error(error))
+  .catch(error => console.error(error))
 }
 
-const saveUser = (name, email) => {
-  const user = {name, email};
+const saveUser = (name, email, role) => {
+  const user = {name, email, role};
   fetch('http://localhost:5000/users', {
       method: 'POST',
       headers: {
