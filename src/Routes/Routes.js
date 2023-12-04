@@ -18,6 +18,7 @@ import MyPropertyBookings from "../pages/Dashboard/MyPropertyBookings/MyProperty
 import MyProperty from "../pages/Dashboard/MyProperty/MyProperty";
 import AllBookings from "../pages/Dashboard/AllBookings/AllBookings";
 import AllUsers from "../pages/Dashboard/AllUsers/AllUsers";
+import WishLIst from "../pages/WishList/WishLIst";
 
 export const router = createBrowserRouter([
     {
@@ -61,6 +62,10 @@ export const router = createBrowserRouter([
             {
                 path: "/contact",
                 element: <ContactUs/>
+            },
+            {
+                path: "/wishlist",
+                element: <WishLIst/>
             },
             {
                 path: '/login',

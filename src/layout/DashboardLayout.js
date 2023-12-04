@@ -76,15 +76,15 @@ const DashboardLayout = () => {
   return (
     <div>
       <Navbar></Navbar>
-      <div className="drawer lg:drawer-open">
+      {/* <div className="drawer lg:drawer-open">
         <input id="dashboard-drawer" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content ml-5">
           <Outlet></Outlet>
         </div>
-        <div className="drawer-side min-h-full">
+        <div className="drawer-side min-h-screen sticky top-1">
           <label htmlFor="dashboard-drawer" aria-label="close sidebar" className="drawer-overlay "></label>
 
-          <ul className="menu p-4 h-full w-[300px] bg-slate-300 text-base-content rounded-md">
+          <ul className="menu p-4 h-full first-line:w-[300px] bg-slate-300 text-base-content rounded-md">
             <div className='mt-5 md:w-[280px] px-5 border-b-2 pb-5 '>
               <div className="avatar">
                 <div className="w-20 ml-20 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
@@ -132,6 +132,66 @@ const DashboardLayout = () => {
             }
 
           </ul>
+        </div>
+      </div> */}
+      <div className="drawer lg:drawer-open">
+        <input id="dashboard-drawer" type="checkbox" className="drawer-toggle" />
+        <div className="drawer-content ml-5">
+          <Outlet />
+
+        </div>
+        <div className="drawer-side min-h-screen lg:sticky lg:top-2 ">
+          <label htmlFor="dashboard-drawer" aria-label="close sidebar" className="drawer-overlay bg-[#2B3440]"></label>
+
+          <ul className="p-4 min-h-full w-[300px] bg-slate-300  gap-5 flex flex-col">
+            {/* Sidebar content here */}
+            <div className='mt-5 md:w-[280px] px-5  border-b-2 pb-5 '>
+              <div className="avatar">
+                <div className="w-20 ml-16 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+                  {
+                    user?.photoURL ?
+                      <img src={user?.photoURL} alt='' /> :
+                      <FaUserAlt className='text-[65px] ml-2 mt-4' />
+                  }
+                </div>
+                <MdEdit className='-ml-5 text-2xl cursor-pointer' onClick={() => document.getElementById('image-modal').showModal()} />
+              </div>
+              <h3 className="text-lg font-semibold  text-center" data-tip={`${user?.displayName}`}>{user?.displayName.length > 15 ? user.displayName.slice(0, 15) + '...' : user.displayName}</h3>
+              <p className='flex justify-between items-center mt-5'><span>Type : {
+                (isAdmin || isSeller || isRequest) ? <>{isAdmin && 'Admin'} {isSeller && 'Owner'} {isRequest && 'Requested'}</> : 'User'
+              }
+              </span>
+                {
+                  (!isAdmin && !isSeller && !isRequest) &&
+                  <button className="btn btn-xs" onClick={() => document.getElementById('owner-modal').showModal()} disabled={disabled}>Owner Request</button>
+                }
+
+
+              </p>
+            </div>
+            <li>
+              <Link to='/dashboard'>My Bookings</Link>
+            </li>
+            {(isAdmin || isSeller) &&
+              <>
+                <li className='flex flex-col gap-5'>
+                  <Link to='/dashboard/myPropertyBookings'>My Property Bookings</Link>
+                  <Link to='/dashboard/myProperty'>My Property</Link>
+                  <Link to='/dashboard/addProperty'>Add A Property</Link>
+                </li>
+              </>
+            }
+            {
+              isAdmin && <>
+                <li className='flex flex-col gap-5'>
+                  <Link to='/dashboard/allUser'>All Users</Link>
+                  <Link to='/dashboard/allBookings'>All Bookings</Link>
+                </li>
+
+              </>
+            }
+          </ul>
+
         </div>
       </div>
       <dialog id="image-modal" className="modal">

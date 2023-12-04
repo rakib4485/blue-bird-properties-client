@@ -40,7 +40,7 @@ const handleSignup = event =>{
     })
     .then(err => console.error(err));
   })
-  .then(err => console.error(err));
+  .catch(err => console.error(err));
   form.reset();
 }
 
@@ -52,7 +52,7 @@ const handleGoogleSignIn = () => {
     const role='user';
     saveUser(user.displayName, user.email, role);
   })
-  .then(error => console.error(error))
+  .catch(error => console.error(error))
 }
 
 const saveUser = (name, email, role) => {

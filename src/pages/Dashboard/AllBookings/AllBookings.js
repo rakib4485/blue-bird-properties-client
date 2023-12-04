@@ -22,7 +22,7 @@ const AllBookings = () => {
                             <th>Image</th>
                             <th>Property Name</th>
                             <th>Location</th>
-                            <th>Booking Status</th>
+                            <th>House Tour Date</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -35,14 +35,7 @@ const AllBookings = () => {
                                 <td><Link to={`/propertyDetails/${booking.propertyId}`}>{booking.propertyName}</Link></td>
                                 <td>{booking.location}</td>
                                 <td>
-                                    {booking.payment && booking.payment === 'false' && (
-                                        <Link to={`/dashboard/payment/${booking._id}`}>
-                                            <button className="btn btn-primary btn-sm">Pay</button>
-                                        </Link>
-                                    )}
-                                    {booking.price && booking.paid && (
-                                        <span className="text-primary">Paid</span>
-                                    )}
+                                    {booking.date}
                                 </td>
                             </tr>
                         ))}

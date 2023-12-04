@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { BiShapeSquare } from "react-icons/bi";
 
@@ -12,9 +12,41 @@ import 'swiper/css/navigation';
 import { Pagination, Navigation } from 'swiper/modules';
 import Button from '../../../components/Button/Button';
 import { Link } from 'react-router-dom';
+import toast from 'react-hot-toast';
+import { AuthContext } from '../../../contexts/AuthProvider';
 
 const PropertyDetailsBanner = ({ propertyDetails }) => {
+    const {user} = useContext(AuthContext)
     const { _id, gallery, propertyName, location, rent, bedroom, bath, size, availability } = propertyDetails;
+
+    const addWishList = () =>{
+        const propertyId = _id;
+        const email = user?.email;
+
+        const list = {
+            propertyId,
+            email
+        }
+
+        fetch('http://localhost:5000/wishlist', {
+            method: "POST",
+            headers: {
+                'content-type' : 'application/json'
+            },
+            body: JSON.stringify(list)
+        })
+        .then(res => res.json())
+        .then(data => {
+            console.log(data);
+            if(data.acknowledged){
+                toast.success('Added to Wishlist')
+            }
+            else{
+                toast.error(data.message);
+            }
+        })
+    }
+
     return (
         <div>
             <Swiper
@@ -61,7 +93,8 @@ const PropertyDetailsBanner = ({ propertyDetails }) => {
                     </div>
                 </div>
                 <div className='flex justify-center items-center gap-6'>
-                    <Button>Add Favorite</Button>
+                    
+                    <button className='bg-gradient-to-r from-sky-500 to-indigo-500 text-white text-lg font-semibold px-5 py-3 rounded-md' onClick={addWishList}>Add Favorite</button>
                     <Link to={`/propertyDetails/${_id}/booking`}>
                     <Button>Book Now</Button>
                     </Link>
