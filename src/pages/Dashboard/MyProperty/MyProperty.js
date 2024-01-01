@@ -17,7 +17,7 @@ const MyProperty = () => {
 
     const availability = format(selectedDate, "PP");
 
-    const url = `http://localhost:5000/myProperty?email=${user?.email}`;
+    const url = `https://blue-bird-server.vercel.app/myProperty?email=${user?.email}`;
 
     const { data: properties = [], refetch, isLoading } = useQuery({
         queryKey: ['property'],
@@ -32,7 +32,7 @@ const MyProperty = () => {
         const date = {
             availability
         }
-        const url = `http://localhost:5000/properties/update/${action}?id=${propertyId}`;
+        const url = `https://blue-bird-server.vercel.app/properties/update/${action}?id=${propertyId}`;
         fetch(url, {
             method: 'PUT',
             headers: {

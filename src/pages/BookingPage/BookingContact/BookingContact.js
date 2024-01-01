@@ -40,7 +40,7 @@ const BookingContact = ({property}) => {
         }
 
         // Add Booking into database
-        fetch('http://localhost:5000/bookings/', {
+        fetch('https://blue-bird-server.vercel.app/bookings/', {
             method: 'POST', 
             headers: {
                 'content-type' : 'application/json'

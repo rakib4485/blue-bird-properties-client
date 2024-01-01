@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { DayPicker } from "react-day-picker";
 import { format } from "date-fns";
@@ -17,9 +17,17 @@ const AddProperty = () => {
     const [selectedDate, setSelectedDate] = useState(new Date());
     const [gallery, setGallery] = useState([]);
     const [isUpload, setIsUpload] = useState(false);
+    const [currentUser, setCurrentUser] = useState('');
 
     const navigate = useNavigate();
 
+    useEffect( () => {
+        fetch(`https://blue-bird-server.vercel.app/activeUser?email=${user?.email}`)
+        .then(res => res.json())
+        .then(data => setCurrentUser(data))
+    }, [user?.email])
+
+    console.log(currentUser.name)
     const availability = format(selectedDate, "PP");
     // console.log(availability)
     console.log(gallery);
@@ -101,6 +109,7 @@ const AddProperty = () => {
                                                 ownerName: user?.displayName,
                                                 authorImage: user?.photoURL,
                                                 authorEmail: user?.email,
+                                                authorContact: currentUser.phone,
                                                 rent,
                                                 description,
                                                 video,
@@ -118,7 +127,7 @@ const AddProperty = () => {
                                                 isRent: true,
                                                 availability
                                             }
-                                            fetch('http://localhost:5000/properties/', {
+                                            fetch('https://blue-bird-server.vercel.app/properties/', {
                                                 method: 'POST',
                                                 headers: {
                                                     'content-type': 'application/json',
@@ -144,6 +153,7 @@ const AddProperty = () => {
                                     ownerName: user?.displayName,
                                     authorImage: user?.photoURL,
                                     authorEmail: user?.email,
+                                    authorContact: currentUser.phone,
                                     rent,
                                     description,
                                     video,
@@ -161,7 +171,7 @@ const AddProperty = () => {
                                     isRent: true,
                                     availability
                                 }
-                                fetch('http://localhost:5000/properties/', {
+                                fetch('https://blue-bird-server.vercel.app/properties/', {
                                     method: 'POST',
                                     headers: {
                                         'content-type': 'application/json',
@@ -188,7 +198,7 @@ const AddProperty = () => {
 
     const setProperty = ({ property }) => {
         console.log(property)
-        fetch('http://localhost:5000/properties/', {
+        fetch('https://blue-bird-server.vercel.app/properties/', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
