@@ -34,17 +34,21 @@ export const router = createBrowserRouter([
                 element: <Properties/>
             },
             {
+                path: "/properties/:area",
+                element: <Properties/>
+            },
+            {
                 path: "/propertyDetails/:id",
                 element: <PrivateRoutes><PropertyDetails></PropertyDetails></PrivateRoutes>,
                 loader: ({params}) =>{
-                    return fetch(`http://localhost:5000/propertyDetails/${params.id}`)
+                    return fetch(`https://blue-bird-server.vercel.app/propertyDetails/${params.id}`)
                 }
             },
             {
                 path: "/propertyDetails/:id/booking",
                 element: <BookingPage/>,
                 loader: ({params}) =>{
-                    return fetch(`http://localhost:5000/propertyDetails/${params.id}`)
+                    return fetch(`https://blue-bird-server.vercel.app/propertyDetails/${params.id}`)
                 }
             },
             {

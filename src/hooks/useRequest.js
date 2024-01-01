@@ -5,7 +5,7 @@ const useRequest = (email) => {
     const [isRequest, setIsRequest] = useState(false);
     const [isRequestLoading, setIsRequestLoading] = useState(true);
     useEffect( () =>{
-        fetch(`http://localhost:5000/users/request/${email}`)
+        fetch(`https://blue-bird-server.vercel.app/users/request/${email}`)
         .then(res => res.json())
         .then(data => {
             setIsRequest(data.isRequest);

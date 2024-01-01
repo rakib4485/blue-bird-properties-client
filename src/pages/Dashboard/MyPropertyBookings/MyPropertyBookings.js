@@ -8,14 +8,15 @@ const MyPropertyBookings = () => {
     const { data: bookings = [] } = useQuery({
         queryKey: ['booking'],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/myPropertyBooking?email=${user?.email}`);
+            const res = await fetch(`https://blue-bird-server.vercel.app/myPropertyBooking?email=${user?.email}`);
             const data = await res.json();
             return data;
         }
     })
+    console.log(bookings)
     return (
         <div>
-            <h3 className="text-3xl mb-5">My Bookings</h3>
+            <h3 className="text-3xl mb-5">My Property Bookings</h3>
             <div className="overflow-x-auto">
                 <table className="table w-full">
                     <thead>
@@ -23,7 +24,10 @@ const MyPropertyBookings = () => {
                             <th></th>
                             <th>Image</th>
                             <th>Property Name</th>
-                            <th>Location</th>
+                            <th>Booking Name</th>
+                            <th>Booking Email</th>
+                            <th>Booking Phone</th>
+                            <th>Booking NID</th>
                             <th>House Tour Date</th>
                         </tr>
                     </thead>
@@ -35,7 +39,10 @@ const MyPropertyBookings = () => {
                                     <Link to={`/propertyDetails/${booking.propertyId}`}><img src={booking.image} alt="" className='w-[200px]' /></Link>
                                 </td>
                                 <td><Link to={`/propertyDetails/${booking.propertyId}`}>{booking.propertyName}</Link></td>
-                                <td>{booking.location}</td>
+                                <td>{booking.renterInfo.name}</td>
+                                <td>{booking.renterInfo.email}</td>
+                                <td>{booking.renterInfo.phone}</td>
+                                <td>{booking.renterInfo.nid}</td>
                                 <td>
                                     {booking.date}
                                 </td>

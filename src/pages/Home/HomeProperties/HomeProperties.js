@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 // Import Swiper styles
@@ -9,12 +9,15 @@ import 'swiper/css/pagination';
 // import required modules
 import { Pagination, Autoplay } from 'swiper/modules';
 import HomePropertyCard from './HomePropertyCard';
+import { Link } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
 
 const HomeProperties = () => {
+
     const places = [
         {
             id: 1,
-            name: 'Gulshan',
+            name: 'Ghulshan',
             img: "https://i.ibb.co/P9ynptL/explore-one-img-1.jpg"
         },
         {
@@ -37,7 +40,22 @@ const HomeProperties = () => {
             name: 'Uttara',
             img: "https://i.ibb.co/nfccgk3/explore-one-img-5.jpg"
         },
+        {
+            id: 6,
+            name: 'Mirpur',
+            img: "https://i.ibb.co/7VPpRdY/explore-one-img-3.jpg"
+        },
     ]
+
+    // const {data: properties = []} = useQuery({
+    //     queryKey: ['property'],
+    //     queryFn: async () => {
+    //         const res = await fetch('https://blue-bird-server.vercel.app/properties?area=null');
+    //         const data = await res.json()
+    //         return data;
+    //     }
+    // })
+
     return (
         <div className='mx-[7%] mt-20'>
             <h4 className='text-xl font-semibold text-green-600'>Find Your Properties</h4>
@@ -46,7 +64,7 @@ const HomeProperties = () => {
             <Swiper
                 slidesPerView={1}
                 spaceBetween={30}
-                loop={true}
+                // loop={true}
                 autoplay={{
                     delay: 2500,
                     disableOnInteraction: false,
@@ -65,13 +83,13 @@ const HomeProperties = () => {
                         spaceBetween: 50,
                     },
                 }}
-                pagination={{
-                    clickable: true,
-                }}
-                modules={[Pagination, Autoplay]}
+                // pagination={{
+                //     clickable: true,
+                // }}
+                modules={[ Autoplay]}
                 className="mySwiper"
             >
-                {places.map(place => <SwiperSlide key={place.id}><HomePropertyCard place={place} /></SwiperSlide>)}
+                {places.map(place => <SwiperSlide key={place.id}><Link to={`/properties?area=${place.name}`}><HomePropertyCard place={place} /></Link></SwiperSlide>)}
 
             </Swiper>
         </div>
