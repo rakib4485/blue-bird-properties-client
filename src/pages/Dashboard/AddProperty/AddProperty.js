@@ -125,7 +125,8 @@ const AddProperty = () => {
                                                 rentDetails,
                                                 review: [],
                                                 isRent: true,
-                                                availability
+                                                availability,
+                                                area
                                             }
                                             fetch('https://blue-bird-server.vercel.app/properties/', {
                                                 method: 'POST',
@@ -169,7 +170,8 @@ const AddProperty = () => {
                                     rentDetails,
                                     review: [],
                                     isRent: true,
-                                    availability
+                                    availability,
+                                    area
                                 }
                                 fetch('https://blue-bird-server.vercel.app/properties/', {
                                     method: 'POST',

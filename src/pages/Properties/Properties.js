@@ -123,7 +123,7 @@ const Properties = () => {
                         <option disabled selected>Filter</option>
                         <option value="default">Default</option>
                         <option value="Family">Family</option>
-                        <option value="bachelor">Bachelor</option>
+                        <option value="Bachelor">Bachelor</option>
                     </select>
                 </div>
             </div>

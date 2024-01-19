@@ -1,12 +1,13 @@
 import React from 'react';
 
-const PropertyDescription = ({ description, location }) => {
+const PropertyDescription = ({ description, location, area }) => {
     const splite = location.split(",");
     const house = splite[0].split(" ")[1];
     const road = splite[1].split(" ")[3];
-    const area = splite[2].split(" ")[1].split("-")[0]
-    const sector = splite[2].split(" ")[1].split("-")[1];
-    console.log(area)
+    // const area = splite[2].split(" ")[1].split("-")[0]
+    const sector = splite[2].split("-")[1];
+    // console.log(sector)
+    // console.log( road, house)
     return (
         <div className='bg-white shadow-md rounded p-5 mt-8'>
             <h2 className="text-2xl font-semibold">Description</h2>

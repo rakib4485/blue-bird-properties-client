@@ -9,13 +9,6 @@ const PropertyCard = ({ property }) => {
             <article className="cursor-pointer transform duration-500 hover:-translate-y-1">
                 <div className="bg-white shadow-xl rounded-lg overflow-hidden">
                     <div className="bg-cover bg-center h-80 p-4" style={{ backgroundImage: `url(${image})` }}>
-                        <div className="flex justify-end">
-                            <svg className="h-6 w-6 text-white fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                <path
-                                    d="M12.76 3.76a6 6 0 0 1 8.48 8.48l-8.53 8.54a1 1 0 0 1-1.42 0l-8.53-8.54a6 6 0 0 1 8.48-8.48l.76.75.76-.75zm7.07 7.07a4 4 0 1 0-5.66-5.66l-1.46 1.47a1 1 0 0 1-1.42 0L9.83 5.17a4 4 0 1 0-5.66 5.66L12 18.66l7.83-7.83z">
-                                </path>
-                            </svg>
-                        </div>
                     </div>
                     <div className="p-4 py-5">
                         <p className="uppercase tracking-wide text-lg font-bold text-gray-700">

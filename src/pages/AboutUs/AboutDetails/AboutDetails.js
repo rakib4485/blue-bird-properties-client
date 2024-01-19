@@ -12,8 +12,8 @@ const AboutDetails = () => {
                 <div>
                     <p className='text-green-600 font-semibold'>Find Your Properties</p>
                     <h1 className='text-5xl font-bold my-2'>Leader in the Market</h1>
-                    <h3 className='text-3x my-4 text-blue-500'>Lorem ipsum dolor sit amet, con adipiscing elit tiam convallis elit id impedie.</h3>
-                    <p className='text-justify'>Quisq commodo simply free ornar tortor. Excepteur sint occaecat sunt in culpa qui officia deserunt mollit anim id est laborum. Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum est notare quam littera gothica, quam nunc putamus parum claram.z</p>
+                    {/* <h3 className='text-3x my-4 text-blue-500'>Lorem ipsum dolor sit amet, con adipiscing elit tiam convallis elit id impedie.</h3> */}
+                    <p className='text-justify'>Bluebird Rent is a leading-rental portal web site with a comprehensive search facility for apartment/flat - finders to find any kind of apartment they wish to live in.So, please take a look around our extensive property listing and feel free to get in touch with us.</p>
                     <div className='mt-7'>
                         <p className='flex gap-3 items-center'><HiOutlineBadgeCheck className='text-green-600'/> Invest in your simply neighborhood</p>
                         <p className='flex gap-3 items-center my-3'><HiOutlineBadgeCheck className='text-green-600'/> Support people in free text extreme need</p>
