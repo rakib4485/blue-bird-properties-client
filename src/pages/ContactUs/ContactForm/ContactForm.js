@@ -9,7 +9,7 @@ const ContactForm = () => {
             <div className='lg:w-3/4'>
                 <h3 className='text-2xl text-green-500'>Contact Us</h3>
                 <h1 className='text-4xl lg:text-6xl font-semibold lg:font-bold my-4 lg:w-2/3'>Love to Hear From You</h1>
-                <p className='lg:w-2/3'>Lorem ipsum dolor sit amet, conse ctetur adipisicing elit sed do eiusm od tempor ut labore. sit amet scelerisque. Phasellus hendrerit neque a augue.</p>
+                <p className='lg:w-2/3'>If you face any problem or if you have any query Please contact us without an any hesitation.</p>
                 <div className='mt-5 flex gap-3 items-center'>
                     <Link className='text-gray-600 bg-gray-300 hover:bg-green-500 hover:text-white font-bold p-2 rounded' to=''><FaFacebookF/></Link>
                     <Link className='text-gray-600 bg-gray-300 hover:bg-green-500 hover:text-white font-bold p-2 rounded' to=''><FaInstagram/></Link>

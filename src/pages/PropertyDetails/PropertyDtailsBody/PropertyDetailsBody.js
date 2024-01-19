@@ -8,11 +8,11 @@ import PropertyOwner from './PropertyOwner/PropertyOwner';
 import PropertyReviews from './PropertyReviews/PropertyReviews';
 
 const PropertyDetailsBody = ({property}) => {
-    const { _id, description, video, location, propertyPlan} = property;
+    const { _id, description, video, location, propertyPlan, area} = property;
     return (
         <div className='md:flex gap-8 mx-[7%] justify-between'>
             <div className='md:w-[60%]'>
-                <PropertyDescription description= {description} location={location}/>
+                <PropertyDescription description= {description} location={location} area={area}/>
                 <PropertyVideo video={video}/>
                 <PropertyOffers property={property}/>
                 <PropertyPlan/>
