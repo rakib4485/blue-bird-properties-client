@@ -26,14 +26,14 @@ const AllUsers = () => {
     const { data: users = [], isLoading, refetch } = useQuery({
         queryKey: ['user'],
         queryFn: async () => {
-            const res = await fetch('https://blue-bird-server.vercel.app/users');
+            const res = await fetch('http://localhost:5000/users');
             const data = await res.json();
             return data;
         }
     });
 
     const handleRole = () =>{
-        const url = `https://blue-bird-server.vercel.app/user/update/${role}?email=${requestEmail}`;
+        const url = `http://localhost:5000/user/update/${role}?email=${requestEmail}`;
         fetch(url, {
                 method: 'PUT',
                 headers: {

@@ -13,7 +13,7 @@ const PropertyReviews = ({id}) => {
     const { data: reviews = [], refetch, isLoading } = useQuery({
         queryKey: ['review'],
         queryFn: async () => {
-            const res = await fetch(`https://blue-bird-server.vercel.app/propertyDetails/${id}/review`);
+            const res = await fetch(`http://localhost:5000/propertyDetails/${id}/review`);
             const data = await res.json();
             return data;
         }
@@ -55,7 +55,7 @@ const PropertyReviews = ({id}) => {
                 comment: comment,
                 ratting: ratting
             }
-            fetch(`https://blue-bird-server.vercel.app/propertyDetails/${id}/review`, {
+            fetch(`http://localhost:5000/propertyDetails/${id}/review`, {
                 method: 'PUT',
                 headers: {
                     "content-type": "application/json"
@@ -89,7 +89,7 @@ const PropertyReviews = ({id}) => {
             <h2 className="text-2xl font-semibold mt-5">Rate us and Write a Review</h2>
             <form onSubmit={handleReview} className='my-5'>
                 <input type="text" name='name' placeholder='Enter Your Name' className='border-2 h-12 w-[48%] pl-3' />
-                <input type="number" name='ratting' placeholder='Enter Your Ratting out of 5' className='border-2 h-12 w-[48%] pl-3 ml-[4%]' />
+                <input type="number" name='ratting' placeholder='Enter Your Ratting out of 5' className='border-2 h-12 w-[48%] pl-3 ml-[4%]' min="0" max="5" />
                 <textarea name="comment" placeholder='Enter your comment' className='border-2 mt-3 w-full h-32 pl-3'></textarea>
                 <button type="submit" className="btn btn-block btn-primary mt-3">comment</button>
             </form>

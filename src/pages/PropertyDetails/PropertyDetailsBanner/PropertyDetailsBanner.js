@@ -28,7 +28,7 @@ const PropertyDetailsBanner = ({ propertyDetails }) => {
             email
         }
 
-        fetch('https://blue-bird-server.vercel.app/wishlist', {
+        fetch('http://localhost:5000/wishlist', {
             method: "POST",
             headers: {
                 'content-type' : 'application/json'
