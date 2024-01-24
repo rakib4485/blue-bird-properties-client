@@ -60,7 +60,7 @@ const DashboardLayout = () => {
     const phone = event.target.phone.value;
     console.log(phone)
 
-    const url = `https://blue-bird-server.vercel.app/user/update/request?email=${user?.email}`;
+    const url = `http://localhost:5000/user/update/request?email=${user?.email}`;
     fetch(url, {
       method: 'PUT',
       headers: {
@@ -71,7 +71,7 @@ const DashboardLayout = () => {
       .then(data => {
         console.log(data)
         if (data.acknowledged) {
-          fetch(`https://blue-bird-server.vercel.app/users/update/${user?.email}?phone=${phone}`, {
+          fetch(`http://localhost:5000/users/update/${user?.email}?phone=${phone}`, {
             method: 'PUT',
             headers: {
               "content-type": "application/json" 

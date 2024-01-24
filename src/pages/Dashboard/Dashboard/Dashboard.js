@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 const Dashboard = () => {
     const { user } = useContext(AuthContext);
 
-  const url = `https://blue-bird-server.vercel.app/myBookings?email=${user?.email}`;
+  const url = `http://localhost:5000/myBookings?email=${user?.email}`;
 
   const { data: bookings = [], isLoading } = useQuery({
     queryKey: ["bookings", user?.email],
@@ -39,6 +39,7 @@ const Dashboard = () => {
               <th>Property Name</th>
               <th>Location</th>
               <th>House Tour Date</th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>
@@ -46,12 +47,17 @@ const Dashboard = () => {
               <tr className="hover" key={booking._id}>
                 <th>{i + 1}</th>
                 <td>
-                    <Link to={`/propertyDetails/${booking.propertyId}`}><img src={booking.image} alt="" className='w-[200px]'/></Link>
+                    <Link to={`/propertyDetails/${booking.propertyId}`}><img src={booking.image} alt="" className='w-[200px] h-[200px]'/></Link>
                 </td>
                 <td><Link to={`/propertyDetails/${booking.propertyId}`}>{booking.propertyName}</Link></td>
                 <td>{booking.location}</td>
                 <td>
                   {booking.date}
+                </td>
+                <td>
+                  {!booking.action && <span className='text-primary'>Not review yet</span>}
+                  {booking.action === 'Confirmed' && <span className='text-primary'>Confirmed By Owner</span>}
+                  {booking.action !== 'Confirmed' && <span className='text-primary'>{booking.action}</span>}
                 </td>
               </tr>
             ))}

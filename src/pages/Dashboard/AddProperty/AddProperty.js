@@ -22,7 +22,7 @@ const AddProperty = () => {
     const navigate = useNavigate();
 
     useEffect( () => {
-        fetch(`https://blue-bird-server.vercel.app/activeUser?email=${user?.email}`)
+        fetch(`http://localhost:5000/activeUser?email=${user?.email}`)
         .then(res => res.json())
         .then(data => setCurrentUser(data))
     }, [user?.email])
@@ -128,7 +128,7 @@ const AddProperty = () => {
                                                 availability,
                                                 area
                                             }
-                                            fetch('https://blue-bird-server.vercel.app/properties/', {
+                                            fetch('http://localhost:5000/properties/', {
                                                 method: 'POST',
                                                 headers: {
                                                     'content-type': 'application/json',
@@ -173,7 +173,7 @@ const AddProperty = () => {
                                     availability,
                                     area
                                 }
-                                fetch('https://blue-bird-server.vercel.app/properties/', {
+                                fetch('http://localhost:5000/properties/', {
                                     method: 'POST',
                                     headers: {
                                         'content-type': 'application/json',
@@ -200,7 +200,7 @@ const AddProperty = () => {
 
     const setProperty = ({ property }) => {
         console.log(property)
-        fetch('https://blue-bird-server.vercel.app/properties/', {
+        fetch('http://localhost:5000/properties/', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',

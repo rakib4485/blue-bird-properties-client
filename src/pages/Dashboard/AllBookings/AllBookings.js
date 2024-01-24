@@ -6,7 +6,7 @@ const AllBookings = () => {
     const { data: bookings = [] } = useQuery({
         queryKey: ['booking'],
         queryFn: async () => {
-            const res = await fetch('https://blue-bird-server.vercel.app/bookings/');
+            const res = await fetch('http://localhost:5000/bookings/');
             const data = await res.json();
             return data;
         }

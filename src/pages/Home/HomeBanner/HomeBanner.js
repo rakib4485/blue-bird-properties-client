@@ -13,7 +13,7 @@ const HomeBanner = () => {
 
 
     useEffect(() => {
-        fetch('https://blue-bird-server.vercel.app/properties?area=null')
+        fetch('http://localhost:5000/properties?area=null')
         .then(res => res.json())
         .then(data => {
             setFilterData(data);

@@ -8,7 +8,7 @@ const RecentlyAdded = () => {
     const { data: properties = [], isLoading } = useQuery({
         queryKey: ['properties'],
         queryFn: async () => {
-            const res = await fetch('https://blue-bird-server.vercel.app/properties/');
+            const res = await fetch('http://localhost:5000/properties/');
             const data = await res.json();
             return data;
         }

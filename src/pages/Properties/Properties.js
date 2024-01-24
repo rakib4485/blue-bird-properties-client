@@ -16,7 +16,7 @@ const Properties = () => {
     let { data: properties = [], isLoading } = useQuery({
         queryKey: ['properties', area],
         queryFn: async () => {
-            const res = await fetch(`https://blue-bird-server.vercel.app/properties?area=${area}`);
+            const res = await fetch(`http://localhost:5000/properties?area=${area}`);
             const data = await res.json();
             setFinalResult(await data);
             return data;
@@ -26,7 +26,7 @@ const Properties = () => {
     const { data: cities = [] } = useQuery({
         queryKey: ['properties'],
         queryFn: async () => {
-            const res = await fetch(`https://blue-bird-server.vercel.app/properties?area=null`);
+            const res = await fetch(`http://localhost:5000/properties?area=null`);
             const data = await res.json();          
             return data;
         }

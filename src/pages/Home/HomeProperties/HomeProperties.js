@@ -50,7 +50,7 @@ const HomeProperties = () => {
     // const {data: properties = []} = useQuery({
     //     queryKey: ['property'],
     //     queryFn: async () => {
-    //         const res = await fetch('https://blue-bird-server.vercel.app/properties?area=null');
+    //         const res = await fetch('http://localhost:5000/properties?area=null');
     //         const data = await res.json()
     //         return data;
     //     }

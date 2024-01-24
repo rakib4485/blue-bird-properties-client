@@ -6,7 +6,7 @@ import { AuthContext } from '../../contexts/AuthProvider';
 
 const WishLIst = () => {
     const {user} = useContext(AuthContext);
-    const url = `https://blue-bird-server.vercel.app/wishlist?email=${user?.email}`;
+    const url = `http://localhost:5000/wishlist?email=${user?.email}`;
     const {data: properties = [], isLoading} = useQuery({
         queryKey: ['property'],
         queryFn: async () => {
